@@ -9,8 +9,8 @@ export default function App() {
 		<React.Fragment>
 			<ToDoCounter></ToDoCounter>
 			<ToDoSearch></ToDoSearch>
-			<ToDoList></ToDoList>
 			<ToDoCreateButton></ToDoCreateButton>
+			<ToDoList></ToDoList>
 		</React.Fragment>
 	);
 }
