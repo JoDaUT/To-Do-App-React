@@ -1,0 +1,21 @@
+.ToDoItem {
+	width: 50%;
+	margin: 0 auto;
+	border: 1px solid rgb(214, 214, 214);
+	border-radius: 5px;
+	display: grid;
+	grid-template-columns: auto 100px;
+	padding: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.ToDoItem__ButtonGroup {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+/* .ToDoItem__Content {
+	width: 200px;
+} */
