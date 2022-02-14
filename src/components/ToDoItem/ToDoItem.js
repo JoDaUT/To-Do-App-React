@@ -1,7 +1,8 @@
 import React from "react";
 import "./ToDoItem.css";
-import { AiFillCheckCircle } from "react-icons/ai";
-import { AiFillCloseCircle } from "react-icons/ai";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import IconButton from "@mui/material/IconButton";
 
 const deleteToDoItem = (e) => {
 	console.log("delete toDo");
@@ -13,28 +14,31 @@ const completeToDoItem = (e) => {
 
 function ToDoItem(props) {
 	const toDo = props.toDo;
+
 	return (
 		<div className="ToDoItem">
 			<div className="ToDoItem__Content">
 				<p>
-					<strong>{toDo.content}</strong>
+					<strong
+						style={{ textDecoration: toDo.completed ? "line-through" : "none" }}
+					>
+						{toDo.content}
+					</strong>
 				</p>
 				<p>Id: {toDo.id}</p>
 				<p>Created at: {toDo.createdAt.toDateString()}</p>
 			</div>
+
 			<div className="ToDoItem__ButtonGroup">
-				<AiFillCheckCircle
-					color={"green"}
-					size={"35px"}
-					cursor={"pointer"}
-					onClick={completeToDoItem}
-				></AiFillCheckCircle>
-				<AiFillCloseCircle
-					color={"red"}
-					size={"35px"}
-					cursor={"pointer"}
-					onClick={deleteToDoItem}
-				></AiFillCloseCircle>
+				<IconButton onClick={completeToDoItem}>
+					<CheckCircleIcon
+						color={toDo.completed ? "disabled" : "success"}
+						fontSize={"large"}
+					></CheckCircleIcon>
+				</IconButton>
+				<IconButton onClick={deleteToDoItem}>
+					<CancelIcon color={"error"} fontSize={"large"}></CancelIcon>
+				</IconButton>
 			</div>
 		</div>
 	);

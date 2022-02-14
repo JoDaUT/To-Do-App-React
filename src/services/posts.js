@@ -7,13 +7,13 @@ export const getToDoList = () => {
 			content:
 				"Magna exercitation laborum qui non proident est nostrud tempor eu quis.",
 			createdAt: new Date(),
-			completed: false,
+			completed: true,
 		},
 		{
 			id: genUUID(),
 			content: "Pariatur amet ullamco ut officia excepteur enim sit laborum.",
 			createdAt: new Date(),
-			completed: false,
+			completed: true,
 		},
 		{
 			id: genUUID(),

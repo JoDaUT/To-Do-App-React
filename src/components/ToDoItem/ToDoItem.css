@@ -9,13 +9,10 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
+
 .ToDoItem__ButtonGroup {
 	display: grid;
 	grid-template-columns: auto auto;
-	gap: 1rem;
 	justify-content: center;
 	align-items: center;
 }
-/* .ToDoItem__Content {
-	width: 200px;
-} */
