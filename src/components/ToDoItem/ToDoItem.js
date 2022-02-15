@@ -4,6 +4,8 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import IconButton from "@mui/material/IconButton";
 
+import Checkbox from "@mui/material/Checkbox";
+
 const deleteToDoItem = (e) => {
 	console.log("delete toDo");
 };
@@ -30,12 +32,7 @@ function ToDoItem(props) {
 			</div>
 
 			<div className="ToDoItem__ButtonGroup">
-				<IconButton onClick={completeToDoItem}>
-					<CheckCircleIcon
-						color={toDo.completed ? "disabled" : "success"}
-						fontSize={"large"}
-					></CheckCircleIcon>
-				</IconButton>
+				<Checkbox checked={toDo.completed} size="large" />
 				<IconButton onClick={deleteToDoItem}>
 					<CancelIcon color={"error"} fontSize={"large"}></CancelIcon>
 				</IconButton>
