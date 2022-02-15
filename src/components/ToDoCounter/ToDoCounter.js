@@ -5,7 +5,7 @@ export default function ToDoCounter(props) {
 	const totalOfToDos = 10;
 	return (
 		<h1 className="ToDoCounter">
-			Has completado {toDosCompleted} de {totalOfToDos}
+			Completed {toDosCompleted}/{totalOfToDos}
 		</h1>
 	);
 }
