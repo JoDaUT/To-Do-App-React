@@ -5,14 +5,15 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Grid from "@mui/material/Grid";
 
-function ToDoSearch() {
+function ToDoSearch({ handleSearchValueChanged }) {
 	return (
 		<Grid container justifyContent="center">
 			<InputBase
 				placeholder="Buscar to-do"
 				inputProps={{ "aria-label": "Buscar to-do" }}
+				onChange={handleSearchValueChanged}
 			/>
-			<IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+			<IconButton type="text" sx={{ p: "10px" }} aria-label="search">
 				<SearchIcon />
 			</IconButton>
 		</Grid>
