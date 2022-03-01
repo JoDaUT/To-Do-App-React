@@ -1,10 +1,16 @@
 import React from "react";
 import ToDoItem from "../ToDoItem/ToDoItem";
-import { getToDoList } from "../../services/posts";
 
-export default function ToDoList() {
-	const toDoList = getToDoList().map((toDo) => {
-		return <ToDoItem toDo={toDo} key={toDo.id}></ToDoItem>;
+export default function ToDoList({ toDos, onToDoCompleted, onToDoDeleted }) {
+	const toDoList = toDos.map((toDo) => {
+		return (
+			<ToDoItem
+				key={toDo.id}
+				toDo={toDo}
+				onComplete={onToDoCompleted}
+				onDelete={onToDoDeleted}
+			></ToDoItem>
+		);
 	});
 
 	return <div className="toDoList">{toDoList}</div>;
