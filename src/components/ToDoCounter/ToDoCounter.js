@@ -1,8 +1,6 @@
 import React from "react";
 import "./ToDoCounter.css";
-export default function ToDoCounter(props) {
-	const toDosCompleted = 3;
-	const totalOfToDos = 10;
+export default function ToDoCounter({ toDosCompleted, totalOfToDos }) {
 	return (
 		<h1 className="ToDoCounter">
 			Completed {toDosCompleted}/{totalOfToDos}
