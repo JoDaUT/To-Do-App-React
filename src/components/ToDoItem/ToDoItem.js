@@ -6,17 +6,7 @@ import IconButton from "@mui/material/IconButton";
 
 import Checkbox from "@mui/material/Checkbox";
 
-const deleteToDoItem = (e) => {
-	console.log("delete toDo");
-};
-
-const completeToDoItem = (e) => {
-	console.log("complete toDo");
-};
-
-function ToDoItem(props) {
-	const toDo = props.toDo;
-
+function ToDoItem({ toDo, onComplete, onDelete }) {
 	return (
 		<div className="ToDoItem">
 			<div className="ToDoItem__Content">
@@ -27,13 +17,17 @@ function ToDoItem(props) {
 						{toDo.content}
 					</strong>
 				</p>
-				<p>Id: {toDo.id}</p>
-				<p>Created at: {toDo.createdAt.toDateString()}</p>
+				<p>Id: {toDo.id.substring(0, 8)}</p>
+				<p>Created at: {toDo.createdAt.toString()}</p>
 			</div>
 
 			<div className="ToDoItem__ButtonGroup">
-				<Checkbox checked={toDo.completed} size="large" />
-				<IconButton onClick={deleteToDoItem}>
+				<Checkbox
+					checked={toDo.completed}
+					size="large"
+					onClick={() => onComplete(toDo)}
+				/>
+				<IconButton onClick={() => onDelete(toDo)}>
 					<CancelIcon color={"error"} fontSize={"large"}></CancelIcon>
 				</IconButton>
 			</div>
