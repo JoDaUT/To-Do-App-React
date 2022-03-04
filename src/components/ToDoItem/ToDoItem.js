@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ToDoItem.css";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import IconButton from "@mui/material/IconButton";
 
 import Checkbox from "@mui/material/Checkbox";
+import { ToDoContext } from "../../context/toDo";
 
-function ToDoItem({ toDo, onComplete, onDelete }) {
+function ToDoItem({ toDo }) {
+	const { deleteToDo: onDelete, completeToDo: onComplete } =
+		useContext(ToDoContext);
+
 	return (
 		<div className="ToDoItem">
 			<div className="ToDoItem__Content">
 				<p>
 					<strong
-						style={{ textDecoration: toDo.completed ? "line-through" : "none" }}
+						style={{
+							textDecoration: toDo.completed ? "line-through" : "none",
+						}}
 					>
 						{toDo.content}
 					</strong>

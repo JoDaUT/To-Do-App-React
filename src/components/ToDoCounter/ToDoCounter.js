@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ToDoCounter.css";
-export default function ToDoCounter({ toDosCompleted, totalOfToDos }) {
+import { ToDoConsumer, ToDoContext } from "../../context/toDo";
+export default function ToDoCounter() {
+	const { toDosCompleted, totalOfToDos } = useContext(ToDoContext);
 	return (
 		<h1 className="ToDoCounter">
 			Completed {toDosCompleted}/{totalOfToDos}

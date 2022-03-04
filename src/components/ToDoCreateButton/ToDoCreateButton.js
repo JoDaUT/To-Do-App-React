@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ToDoContext } from "../../context/toDo";
 
 import { genUUID } from "../../helpers/uuid";
 import { ToDoCreateButtonView } from "./ToDoCreateButtonView";
 
-function ToDoCreateButton({ createToDo }) {
+function ToDoCreateButton(props) {
+	const { createToDo } = useContext(ToDoContext);
 	let [showForm, setShowForm] = React.useState(false);
 	let [text, setText] = React.useState("");
 	const toggleForm = () => {
