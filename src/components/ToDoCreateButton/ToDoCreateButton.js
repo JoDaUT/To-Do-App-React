@@ -5,6 +5,7 @@ import { ToDoCreateButtonView } from "./ToDoCreateButtonView";
 
 function ToDoCreateButton({ createToDo }) {
 	let [showForm, setShowForm] = React.useState(false);
+	let [text, setText] = React.useState("");
 	const toggleForm = () => {
 		setShowForm(!showForm);
 	};
@@ -28,12 +29,15 @@ function ToDoCreateButton({ createToDo }) {
 			content,
 			completed: false,
 		};
+		setText("");
 		createToDo(toDo);
 	};
 	return (
 		<ToDoCreateButtonView
 			showForm={showForm}
 			toggleForm={toggleForm}
+			text={text}
+			setText={setText}
 			handleSubmit={handleSubmit}
 		></ToDoCreateButtonView>
 	);
