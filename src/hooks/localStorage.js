@@ -8,14 +8,16 @@ export function useLocalStorage(key, defaultValue) {
 	const [item, setItem] = useState(defaultValue);
 
 	useEffect(() => {
-		const localStorageItem = localStorage.getItem(key);
-		if (!localStorageItem) {
-			const serializedValue = JSON.stringify(defaultValue);
-			localStorage.setItem(key, serializedValue);
-		} else {
-			const deserializedValue = JSON.parse(localStorageItem);
-			setItem(deserializedValue);
-		}
+		setTimeout(() => {
+			const localStorageItem = localStorage.getItem(key);
+			if (!localStorageItem) {
+				const serializedValue = JSON.stringify(defaultValue);
+				localStorage.setItem(key, serializedValue);
+			} else {
+				const deserializedValue = JSON.parse(localStorageItem);
+				setItem(deserializedValue);
+			}
+		}, 1000);
 	}, []);
 
 	const saveItem = (item) => {
