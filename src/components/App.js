@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import { getToDoList, saveTodos } from "../services/posts";
+import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/localStorage";
 import { AppView } from "./AppView";
 
 export default function App() {
-	const [searchValue, setSearchValue] = React.useState("");
-	const [toDos, setToDos] = React.useState(getToDoList());
-	const [toDosCompleted, setToDosCompleted] = React.useState(
-		toDos.filter((toDo) => toDo.completed).length
-	);
-	const [totalOfToDos, setTotalOfToDos] = React.useState(toDos.length);
+	const [searchValue, setSearchValue] = useState("");
+	const [toDos, saveToDos] = useLocalStorage("ToDosV1", []);
+
+	const toDosCompleted = toDos.filter((toDo) => toDo.completed).length;
 
 	const filterOptions = (toDo, text) => {
 		if (toDo.id.includes(text)) {
@@ -16,52 +14,45 @@ export default function App() {
 		return toDo.content.includes(text) || toDo.id.includes(text);
 	};
 
+	let searchedToDos = [];
+	if (searchValue.length === 0) {
+		searchedToDos = toDos;
+	} else {
+		toDos.sort((a, b) => b.createdAt - a.createdAt);
+		searchedToDos = toDos.filter((toDo) => filterOptions(toDo, searchValue));
+	}
+
 	const handleSearchValueChanged = (event) => {
 		const text = event.target.value;
 		setSearchValue(text);
-		let toDos = getToDoList();
-		toDos.sort((a, b) => b.createdAt - a.createdAt);
-
-		toDos = toDos.filter((toDo) => filterOptions(toDo, text));
-		setToDos(toDos);
 	};
 
 	const handleToDoCompleted = (toDo) => {
 		const index = toDos.findIndex((item) => item.id === toDo.id);
 		const newToDos = [...toDos];
 		newToDos[index].completed = newToDos[index].completed ? false : true;
-		setToDos(newToDos);
-		setToDosCompleted(newToDos.filter((toDo) => toDo.completed).length);
-		saveTodos(newToDos);
+		saveToDos(newToDos);
 	};
 	const handleToDoDeleted = (toDo) => {
 		const newToDos = [...toDos];
 		const index = newToDos.findIndex((item) => item.id === toDo.id);
 		newToDos.splice(index, 1);
-		setToDos(newToDos);
-		saveTodos(newToDos);
+		saveToDos(newToDos);
 	};
 
 	const handleCreateToDo = (toDo) => {
 		const newToDos = [...toDos];
 		newToDos.unshift(toDo);
-		setToDos(newToDos);
-		saveTodos(newToDos);
+		saveToDos(newToDos);
 	};
-
-	useEffect(() => {
-		return () => {
-			console.log("componentWillMount");
-		};
-	});
 
 	return (
 		<AppView
 			toDosCompleted={toDosCompleted}
-			totalOfToDos={totalOfToDos}
+			totalOfToDos={toDos.length}
 			handleSearchValueChanged={handleSearchValueChanged}
 			handleCreateToDo={handleCreateToDo}
-			toDos={toDos}
+			toDos={searchedToDos}
 			handleToDoCompleted={handleToDoCompleted}
 			handleToDoDeleted={handleToDoDeleted}
 		></AppView>
