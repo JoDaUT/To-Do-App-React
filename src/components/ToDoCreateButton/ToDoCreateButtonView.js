@@ -3,7 +3,17 @@ import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "./ToDoCreateButton.css";
 
-function ToDoCreateButtonView({ showForm, toggleForm, handleSubmit }) {
+function ToDoCreateButtonView({
+	showForm,
+	toggleForm,
+	handleSubmit,
+	text,
+	setText,
+}) {
+	function onChangeText(e) {
+		setText(e.target.value);
+	}
+
 	return (
 		<div className="ToDoCreateButton">
 			{!showForm && (
@@ -19,6 +29,8 @@ function ToDoCreateButtonView({ showForm, toggleForm, handleSubmit }) {
 					variant="standard"
 					fullWidth
 					className="input"
+					value={text}
+					onChange={onChangeText}
 				/>
 				<Button type="submit">Crear</Button>
 			</form>
