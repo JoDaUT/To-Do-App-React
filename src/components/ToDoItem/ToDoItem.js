@@ -14,7 +14,6 @@ function ToDoItem({ toDo }) {
 
 	function deleteModal() {
 		onDelete(toDo);
-		//console.log("hakuna");
 	}
 
 	return (

@@ -6,8 +6,9 @@ export function useLocalStorage(key, defaultValue) {
 	}
 
 	const [item, setItem] = useState(defaultValue);
-
+	const [loading, setLoading] = useState(false);
 	useEffect(() => {
+		setLoading(true);
 		setTimeout(() => {
 			const localStorageItem = localStorage.getItem(key);
 			if (!localStorageItem) {
@@ -17,6 +18,7 @@ export function useLocalStorage(key, defaultValue) {
 				const deserializedValue = JSON.parse(localStorageItem);
 				setItem(deserializedValue);
 			}
+			setLoading(false);
 		}, 1000);
 	}, []);
 
@@ -26,5 +28,5 @@ export function useLocalStorage(key, defaultValue) {
 		setItem(item);
 	};
 
-	return [item, saveItem];
+	return { item, saveItem, loading };
 }

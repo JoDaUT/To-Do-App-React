@@ -6,12 +6,18 @@ import { ToDoContext } from "../../context/toDo";
 import ToDoItem from "../ToDoItem/ToDoItem";
 
 export default function ToDoList(props) {
-	const { searchedToDos } = useContext(ToDoContext);
+	const { searchedToDos, loading } = useContext(ToDoContext);
 
-	if (searchedToDos.length === 0) {
+	if (loading) {
 		return (
 			<Box sx={{ display: "flex", justifyContent: "center", pt: "2rem" }}>
 				<CircularProgress />
+			</Box>
+		);
+	} else if (!loading && searchedToDos.length === 0) {
+		return (
+			<Box sx={{ display: "flex", justifyContent: "center", pt: "2rem" }}>
+				<p>No hay To-Dos guardados 😟</p>
 			</Box>
 		);
 	} else {

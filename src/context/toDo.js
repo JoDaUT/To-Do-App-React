@@ -6,7 +6,11 @@ const ToDoConsumer = ToDoContext.Consumer;
 function ToDoProvider(props) {
 	const key = "ToDosV1";
 	const [searchValue, setSearchValue] = useState("");
-	const [toDos, saveToDos] = useLocalStorage(key, []);
+	const {
+		item: toDos,
+		saveItem: saveToDos,
+		loading,
+	} = useLocalStorage(key, []);
 
 	const toDosCompleted = toDos.filter((toDo) => toDo.completed).length;
 	const totalOfToDos = toDos.length;
@@ -28,7 +32,6 @@ function ToDoProvider(props) {
 	const searchValueChanged = (event) => {
 		const text = event.target.value;
 		setSearchValue(text);
-		console.log({ text });
 	};
 
 	const completeToDo = (toDo) => {
@@ -60,6 +63,7 @@ function ToDoProvider(props) {
 				searchedToDos,
 				toDosCompleted,
 				totalOfToDos,
+				loading,
 			}}
 		>
 			{props.children}
