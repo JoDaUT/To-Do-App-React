@@ -1,0 +1,18 @@
+.button__group {
+	padding-top: 1rem;
+	display: grid;
+	justify-content: center;
+	align-items: flex-end;
+	gap: 1rem;
+	grid-template-columns: auto auto;
+}
+
+.modal__content {
+}
+
+.modal__card {
+	background-color: white;
+	padding: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}

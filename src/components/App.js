@@ -1,9 +1,12 @@
+import { ModalProvider } from "../context/modal";
 import { ToDoProvider } from "../context/toDo";
 import { AppView } from "./AppView";
 export default function App() {
 	return (
-		<ToDoProvider>
-			<AppView></AppView>
-		</ToDoProvider>
+		<ModalProvider>
+			<ToDoProvider>
+				<AppView></AppView>
+			</ToDoProvider>
+		</ModalProvider>
 	);
 }

@@ -3,3 +3,8 @@ body {
 	font-family: "Montserrat", sans-serif;
 	color: rgb(77, 76, 76);
 }
+
+#modal-root {
+	position: relative;
+	z-index: 1;
+}
